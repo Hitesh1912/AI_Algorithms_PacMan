@@ -99,50 +99,9 @@ def joinFactors(factors):
                     "Input factors: \n" +
                     "\n".join(map(str, factors)))
 
+
     "*** YOUR CODE HERE ***"
-
-    #print " @@@@Unconditioned", setsOfUnconditioned
-        
-    uncondVariables = []
-    condVariables = []
-    variableDomainsDict = {}
-
-    if len(factors) > 0:
-        #print factors[0].variableDomainsDict()
-        variableDomainsDict = factors[0].variableDomainsDict()
-
-    for factor in factors:
-        #existing variables list
-        uncond_varList = factor.unconditionedVariables()
-        cond_varList = factor.conditionedVariables()
-
-        uncondVariables.extend(uncond_varList)
-        #print "uncondVariables", uncondVariables
-
-        for condVar in cond_varList:
-            #non duplicate list of condVariables
-            if condVar not in condVariables:
-                condVariables.append(condVar)
-                print "condVariables", condVariables
-        condVariables = [var for var in condVariables if var not in uncondVariables]
-
-        #print "Updated-condVariables", condVariables
-
-    #newFactor = Factor(setsOfUnconditioned, setsOfConditioned, variableDomainsDict)
-
-    newFactor = Factor(uncondVariables, condVariables, variableDomainsDict)
-
-    #print "new factor", newFactor
-
-    for assignment in newFactor.getAllPossibleAssignmentDicts():
-        prob = 1
-        for factor in factors:
-            prob = prob * factor.getProbability(assignment)
-            newFactor.setProbability(assignment, prob)
-
-    return newFactor
-
-    #util.raiseNotDefined()
+    util.raiseNotDefined()
 
 
 def eliminateWithCallTracking(callTrackingList=None):
@@ -191,45 +150,7 @@ def eliminateWithCallTracking(callTrackingList=None):
                     "unconditionedVariables: " + str(factor.unconditionedVariables()))
 
         "*** YOUR CODE HERE ***"
-
-        print "eliminationVariable::: \t ", eliminationVariable
-
-
-        uncondVariables = factor.unconditionedVariables()
-        #print "uncondVariables \t ", uncondVariables
-
-        # eliminating given elimination variable
-        uncondVariables = [variable for variable in uncondVariables if variable <> eliminationVariable]
-
-        #print "uncondVariables-updated \t",uncondVariables
-
-        condVariables = factor.conditionedVariables()
-
-        #print "condVariables \t", condVariables
-
-        variableDomainsDict = factor.variableDomainsDict()
-
-        #print "variableDomainsDict: ", variableDomainsDict
-
-        domainList = variableDomainsDict[eliminationVariable]
-
-        #print "domainList ", domainList
-
-        newFactor = Factor(uncondVariables, condVariables, variableDomainsDict)
-
-        #print "new factor", newFactor
-
-        for assignment in newFactor.getAllPossibleAssignmentDicts():
-            prob = 0
-            for domain in domainList:
-                assignment[eliminationVariable] = domain
-
-                prob = prob + factor.getProbability(assignment)
-            newFactor.setProbability(assignment, prob)
-
-        return newFactor
-
-        #util.raiseNotDefined()
+        util.raiseNotDefined()
 
     return eliminate
 
@@ -284,46 +205,5 @@ def normalize(factor):
                             str(factor))
 
     "*** YOUR CODE HERE ***"
-
-    unCondVariables = factor.unconditionedVariables()
-
-    # conditoned Variable has all conditionedVariables in factor
-    condVariables = factor.conditionedVariables()
-
-    variableDomainsDict = factor.variableDomainsDict()
-
-    assignments = factor.getAllPossibleAssignmentDicts()
-
-    # conditoned variables has unconditioned variables with exactly one entry in their domain
-    for variable in unCondVariables:
-        if (len(variableDomainsDict[variable]) == 1):
-            condVariables.add(variable)
-
-    #print " condVariables", condVariables
-
-    unCondVariables = [variable for variable in unCondVariables if variable not in condVariables]
-
-    #print " unCondVariables", unCondVariables
-
-    newFactor = Factor(unCondVariables, condVariables, variableDomainsDict)
-
-    total_prob = 0
-
-    total_prob = sum(factor.getProbability(assignment) for assignment in assignments)
-
-    if(total_prob == 0):
-        return None
-
-        # prob = [factor.getProbability(assignment) / sum_prob
-        #       for factor.getProbability(assignment) in assignments]
-
-    for assignment in assignments:
-        prob = factor.getProbability(assignment)
-        norm_prob = prob / total_prob
-        newFactor.setProbability(assignment, norm_prob)
-
-    return newFactor
-
-
-    #util.raiseNotDefined()
+    util.raiseNotDefined()
 
