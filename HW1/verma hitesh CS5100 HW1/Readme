@@ -1,0 +1,27 @@
+
+*************************************
+
+heuristics:
+
+heuristics h(n) for question 6 :
+
+Calculate the Manhattan distance of current node ’n’ to the closest corner and Manhattan distance to other unvisited corners
+
+
+
+heuristics h(n) for question 7 :
+
+h(n) is calculated using => Count the number of food left in food grid at the current state 
+
+*************************************
+
+
+
+Estimated time : 48 hours 
+
+
+
+
+
+
+

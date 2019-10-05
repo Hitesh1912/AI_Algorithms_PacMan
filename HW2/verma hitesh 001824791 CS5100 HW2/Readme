@@ -1,0 +1,26 @@
+
+*************************************
+
+Q1
+
+Eval Function :
+
+Adding score in the calculation and placing values to distance to closest food and  distance to closest ghost .
+
+Values are added as 10 based on the importance to above two features factor for paceman 
+So that I approach the food and also give some importance to ghost distance (but less than that to ghost )
+
+checking condition when to end and send the eval function back 
+
+*************************************
+
+
+
+Estimated time : 24 hours 
+
+
+
+
+
+
+
